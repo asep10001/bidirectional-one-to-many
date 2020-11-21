@@ -28,7 +28,6 @@ public class Author {
     @Column
     private String lastName;
 
-    @JsonManagedReference
     @OneToMany(targetEntity = Book.class, fetch = FetchType.LAZY)
     private List<Book> books = new ArrayList<>();
 }

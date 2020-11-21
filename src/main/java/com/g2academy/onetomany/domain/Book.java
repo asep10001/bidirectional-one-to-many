@@ -27,15 +27,13 @@ public class Book {
     @Column
     private String title;
 
-    @JsonBackReference
     @ManyToOne
     private Author author;
 
     @Column
     private String publisher;
 
-    @JsonManagedReference
-    @OneToMany( targetEntity = Review.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany( targetEntity = Review.class)
     private List<Review> reviews= new ArrayList<>();
 
     public void addReview(Review review) {

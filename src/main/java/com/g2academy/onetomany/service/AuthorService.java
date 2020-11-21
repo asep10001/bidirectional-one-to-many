@@ -30,24 +30,27 @@ public class AuthorService {
 
     public Author add(AuthorDto authorDto) {
 
-        Author authorEntity = Author.builder()
-                .firstName(authorDto.getFirstName())
-                .lastName(authorDto.getLastName())
-                .build();
-        Author entity = this.save(authorEntity);
+//        Author authorEntity = Author.builder()
+//                .firstName(authorDto.getFirstName())
+//                .lastName(authorDto.getLastName())
+//                .books(new ArrayList<>())
+//                .build();
 
-        List<Book> books = new ArrayList<>();
+        Author  aEntity = new Author();
+        aEntity.setFirstName(authorDto.getFirstName());
+        aEntity.setLastName(authorDto.getLastName());
+
         for (Book book : authorDto.getBooks()) {
             Book bookEntity = Book.builder()
-                    .author(entity)
+                    .author(aEntity)
                     .title(book.getTitle())
                     .publisher(book.getPublisher())
                     .build();
 
-            books.add( bookRepository.save(book));
+            aEntity.getBooks().add(bookEntity);
         }
-        entity.setBooks(books);
-        return entity;
+
+        return this.save(aEntity);
 
 
     }
