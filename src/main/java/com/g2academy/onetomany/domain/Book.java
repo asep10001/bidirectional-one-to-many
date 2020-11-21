@@ -27,6 +27,7 @@ public class Book {
     @Column
     private String title;
 
+    @JsonBackReference
     @ManyToOne
     private Author author;
 

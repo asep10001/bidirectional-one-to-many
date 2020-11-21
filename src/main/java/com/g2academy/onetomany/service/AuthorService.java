@@ -15,12 +15,10 @@ import java.util.Optional;
 public class AuthorService {
 
     private final AuthorRepository repository;
-    private final BookRepository bookRepository;
 
 
-    public AuthorService(AuthorRepository repository, BookRepository bookRepository) {
+    public AuthorService(AuthorRepository repository) {
         this.repository = repository;
-        this.bookRepository = bookRepository;
     }
 
     private Author save(Author entity) {
@@ -36,7 +34,7 @@ public class AuthorService {
 //                .books(new ArrayList<>())
 //                .build();
 
-        Author  aEntity = new Author();
+        Author aEntity = new Author();
         aEntity.setFirstName(authorDto.getFirstName());
         aEntity.setLastName(authorDto.getLastName());
 
@@ -45,12 +43,12 @@ public class AuthorService {
                     .author(aEntity)
                     .title(book.getTitle())
                     .publisher(book.getPublisher())
+                    .reviews(book.getReviews())
                     .build();
-
-            aEntity.getBooks().add(bookEntity);
+            aEntity.addItem(bookEntity);
         }
 
-        return this.save(aEntity);
+        return repository.save(aEntity);
 
 
     }

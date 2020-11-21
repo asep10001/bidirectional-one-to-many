@@ -28,6 +28,12 @@ public class Author {
     @Column
     private String lastName;
 
-    @OneToMany(targetEntity = Book.class, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OneToMany(targetEntity = Book.class, cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Book> books = new ArrayList<>();
+
+    public void addItem(Book item) {
+        this.books.add(item);
+        item.setAuthor(this);
+    }
 }
