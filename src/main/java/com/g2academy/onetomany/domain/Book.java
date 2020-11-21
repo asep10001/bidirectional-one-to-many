@@ -34,7 +34,8 @@ public class Book {
     @Column
     private String publisher;
 
-    @OneToMany( targetEntity = Review.class)
+    @JsonManagedReference
+    @OneToMany(targetEntity = Review.class, cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Review> reviews= new ArrayList<>();
 
     public void addReview(Review review) {

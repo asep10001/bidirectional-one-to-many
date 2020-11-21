@@ -43,7 +43,6 @@ public class BookService {
 
     public Optional<Book> findById(Long id) {return repository.findById(id);}
 
-    @Transactional
     public Book edit(BookDto bookDto) {
         Optional<Book> entity = repository.findById(bookDto.getId());
 

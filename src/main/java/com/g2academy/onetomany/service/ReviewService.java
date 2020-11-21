@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,14 +25,18 @@ public class ReviewService {
     private Review save(Review entity) {return repository.save(entity);}
 
     public Review add (ReviewDto reviewDto){
-        Review entity = Review.builder()
-                .comments(reviewDto.getComment())
-                .reviewer(reviewDto.getReviewer())
-                .book(reviewDto.getBook())
-                .build();
+        Review entity = new Review();
+                entity.setComments(reviewDto.getComment());
+                entity.setReviewer(reviewDto.getReviewer());
 
-        Book entityBook = reviewDto.getBook();
-        entityBook.addReview(entity);
+        List<Book> books = new ArrayList<>();
+        for (Book book:  books) {
+            if(book.getId() ==  reviewDto.getBook().getId()){
+                Book bookEntity = new Book();
+                bookEntity.addReview(entity);
+                entity.setBook(book);
+            }
+        }
         return this.save(entity);
     }
 

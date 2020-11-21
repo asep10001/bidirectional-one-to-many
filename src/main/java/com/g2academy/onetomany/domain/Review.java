@@ -25,6 +25,7 @@ public class Review {
     @Column
     private String reviewer;
 
+    @JsonBackReference
     @ManyToOne
     private Book book;
 
