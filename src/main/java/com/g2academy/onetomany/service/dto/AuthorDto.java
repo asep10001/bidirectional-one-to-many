@@ -6,15 +6,12 @@ import lombok.*;
 
 import java.util.List;
 
-@Setter
-@Getter
+@Value
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class AuthorDto {
 
     private long id;
     private String firstName;
     private String lastName;
-    private List<Book> books;
+    private List<BookDto> books;
 }

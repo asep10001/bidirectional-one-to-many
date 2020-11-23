@@ -28,7 +28,8 @@ public class Book {
     private String title;
 
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "author_id")
     private Author author;
 
     @Column

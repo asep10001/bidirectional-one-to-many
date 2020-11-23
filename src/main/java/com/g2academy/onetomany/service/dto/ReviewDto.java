@@ -4,11 +4,8 @@ package com.g2academy.onetomany.service.dto;
 import com.g2academy.onetomany.domain.Book;
 import lombok.*;
 
-@Setter
-@Getter
+@Value
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class ReviewDto {
 
     private Long id;

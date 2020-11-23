@@ -6,11 +6,9 @@ import lombok.*;
 
 import java.util.List;
 
-@Setter
-@Getter
+@Value
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+
 
 public class BookDto {
 
